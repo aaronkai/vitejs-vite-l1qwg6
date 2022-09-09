@@ -1,5 +1,5 @@
 import { ChangeEvent, ChangeEventHandler } from 'react';
-import { calcTM } from './helpers';
+import { calcPlate } from './helpers';
 import { useCookies } from 'react-cookie';
 // import { useState, useEffect } from "react";
 
@@ -14,7 +14,7 @@ export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
 
     setTM((prevState) => ({
       ...prevState,
-      [name]: calcTM(value * 0.9, 2.5),
+      [name]: calcPlate(value * 0.9, 2.5),
     }));
     setCookie('oneRM', oneRM, { path: '/' });
   }
