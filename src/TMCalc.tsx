@@ -26,7 +26,7 @@ export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
         <label htmlFor="bench">
           Bench 1RM
           <input
-            type="number"
+            type="text"
             value={oneRM.bench}
             id="bench"
             name="bench"
