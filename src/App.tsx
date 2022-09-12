@@ -8,7 +8,6 @@ import WeekPicker from './WeekPicker';
 
 function App() {
   const [cookies, setCookie] = useCookies(['oneRM']);
-  console.log({ cookies });
   let [squat, bench, deadlift, overhead] = '';
   let squatTM, benchTM, deadliftTM, overheadTM;
 
@@ -38,7 +37,6 @@ function App() {
   const [week, setWeek] = useState(1);
 
   useEffect(() => {
-    console.log('oneRM changed');
     setCookie('oneRM', oneRM, { path: '/' });
   }, [oneRM]);
 
@@ -46,7 +44,7 @@ function App() {
     <>
       <meta name="description" content="workout helper for you" />
       <link rel="icon" href="/favicon.ico" />
-      <div className="grid bg-slate-200 h-screen content-center justify-center gap-4">
+      <div className="grid bg-slate-200 min-h-screen content-center justify-center gap-4">
         <Header title="Five Three One" />
         <Nav />
         <TMCalc oneRM={oneRM} setOneRM={setOneRM} TM={TM} setTM={setTM} />
