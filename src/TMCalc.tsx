@@ -4,10 +4,8 @@ import { useCookies } from 'react-cookie';
 // import { useState, useEffect } from "react";
 
 export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
-  const [cookies, setCookie] = useCookies(['oneRM']);
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    // console.log(name, value);
     setOneRM((prevState) => ({
       ...prevState,
       [name]: Math.floor(value),
@@ -17,8 +15,6 @@ export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
       ...prevState,
       [name]: calcPlate(value * 0.9, 2.5),
     }));
-
-    setCookie('oneRM', oneRM, { path: '/' });
   }
 
   // const exercises = Object.keys(oneRM);
