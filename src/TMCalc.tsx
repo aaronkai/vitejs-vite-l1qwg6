@@ -19,12 +19,36 @@ export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
     setCookie('oneRM', oneRM, { path: '/' });
   }
 
+  const exercises = Object.keys(oneRM);
+
   return (
     <div className="flex flex-col">
-      <h2>TMCalc</h2>
+      <h2 className="text-2xl">TMCalc</h2>
+
       <div>
+        {exercises.map((exercise) => {
+          return (
+            <div>
+              <label htmlFor={exercise}>
+                {exercise} 1RM:
+                <input
+                  type="text"
+                  value={oneRM.bench}
+                  id={exercise}
+                  name={exercise}
+                  tabIndex={1}
+                  onChange={(e) => handleChange(e)}
+                />
+              </label>
+              <p>TM: {TM.bench}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* <div>
         <label htmlFor="bench">
-          Bench 1RM
+          Bench 1RM:
           <input
             type="text"
             value={oneRM.bench}
@@ -77,7 +101,7 @@ export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
           />
         </label>
         <p>TM: {TM.overhead}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

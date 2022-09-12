@@ -3,8 +3,8 @@ import Header from './Header';
 import Nav from './Nav';
 import TMCalc from './TMCalc';
 import { useCookies } from 'react-cookie';
-import WeekSlider from './WeekSlider';
 import WorkoutTable from './WorkoutTable';
+import WeekPicker from './WeekPicker';
 
 function App() {
   const [cookies, setCookie] = useCookies(['oneRM']);
@@ -38,16 +38,17 @@ function App() {
   const [week, setWeek] = useState(1);
 
   return (
-    <div>
+    <>
       <meta name="description" content="workout helper for you" />
       <link rel="icon" href="/favicon.ico" />
-      {/* <p>Message from the Server: {props.message}!</p> */}
-      <Header title="Five Three One" />
-      <Nav />
-      <TMCalc oneRM={oneRM} setOneRM={setOneRM} TM={TM} setTM={setTM} />
-      <WeekSlider week={week} setWeek={setWeek} />
-      <WorkoutTable week={week} TM={TM}/>
-    </div>
+      <div className="grid bg-slate-200 h-screen content-center justify-center gap-4">
+        <Header title="Five Three One" />
+        <Nav />
+        <TMCalc oneRM={oneRM} setOneRM={setOneRM} TM={TM} setTM={setTM} />
+        <WeekPicker week={week} setWeek={setWeek} />
+        <WorkoutTable week={week} TM={TM} />
+      </div>
+    </>
   );
 }
 
