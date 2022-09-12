@@ -17,6 +17,8 @@ const reps = [
 ];
 
 const plateSize = 2.5;
+const dayOneExercises = ['squat', 'bench'];
+const dayTwoExercise = [];
 
 export default function WorkoutTable({ week, TM }) {
   return (

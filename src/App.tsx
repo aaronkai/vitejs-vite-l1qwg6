@@ -8,6 +8,7 @@ import WeekPicker from './WeekPicker';
 
 function App() {
   const [cookies, setCookie] = useCookies(['oneRM']);
+  console.log({ cookies });
   let [squat, bench, deadlift, overhead] = '';
   let squatTM, benchTM, deadliftTM, overheadTM;
 
@@ -21,7 +22,6 @@ function App() {
     ];
   }
 
-  const [count, setCount] = useState(0);
   const [oneRM, setOneRM] = useState({
     squat,
     bench,
@@ -36,6 +36,11 @@ function App() {
     overhead: overheadTM,
   });
   const [week, setWeek] = useState(1);
+
+  useEffect(() => {
+    console.log('oneRM changed');
+    setCookie('oneRM', oneRM, { path: '/' });
+  }, [oneRM]);
 
   return (
     <>
