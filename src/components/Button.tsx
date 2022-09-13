@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { StarIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 export default function Button({
   exercise,

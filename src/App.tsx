@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
-import TMCalc from "./components/TMCalc";
+import OneRepMaxForm from "./components/OneRepMaxForm";
 import { useCookies } from "react-cookie";
 import WorkoutTable from "./components/WorkoutTable";
 import WeekPicker from "./components/WeekPicker";
+import TrainingMaxDisplay from "./components/TrainingMaxDisplay";
 
 function App() {
   const [cookies, setCookie] = useCookies(["oneRM"]);
   //initialize TM and oneRM at zero
-  let [squat, bench, deadlift, overhead] = [0, 0, 0, 0];
+  // let [squat, bench, deadlift, overhead] = [0, 0, 0, 0];
+  let squat, bench, deadlift, overhead;
   let [squatTM, benchTM, deadliftTM, overheadTM] = [0, 0, 0, 0];
 
   //if user has been to the site before, load their oneRM from cookies and derive TM
@@ -49,7 +51,13 @@ function App() {
       <div className="grid bg-slate-200 min-h-screen content-center justify-center gap-4">
         <Header title="Five Three One" />
         <Nav />
-        <TMCalc oneRM={oneRM} setOneRM={setOneRM} TM={TM} setTM={setTM} />
+        <OneRepMaxForm
+          oneRM={oneRM}
+          setOneRM={setOneRM}
+          TM={TM}
+          setTM={setTM}
+        />
+        <TrainingMaxDisplay TM={TM} />
         <WeekPicker week={week} setWeek={setWeek} />
         <WorkoutTable week={week} TM={TM} />
       </div>
