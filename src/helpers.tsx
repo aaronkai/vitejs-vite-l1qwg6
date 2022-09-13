@@ -1,8 +1,8 @@
-export function round2point5(x) {
+export function round2point5(x: number) {
   return Math.ceil(x / 2.5) * 2.5;
 }
 
-export function calcPlate(lbs, plateSize) {
+export function calcPlate(lbs: number, plateSize: number) {
   return Math.ceil(lbs / plateSize) * plateSize;
 }
 
