@@ -1,18 +1,37 @@
-import { ChangeEvent, ChangeEventHandler } from "react";
-import { calcPlate } from "./helpers";
-import { useCookies } from "react-cookie";
+import React, { ChangeEvent } from "react";
+import { calcPlate } from "../helpers";
 
-export default function TMCalc({ oneRM, setOneRM, TM, setTM }) {
+type Props = {
+  oneRM: {
+    squat: Number;
+    bench: Number;
+    deadlift: Number;
+    overhead: Number;
+    [index: string]: Number;
+  };
+  TM: {
+    squat: Number;
+    bench: Number;
+    deadlift: Number;
+    overhead: Number;
+    [index: string]: Number | undefined;
+  };
+  setOneRM: any;
+  setTM: any;
+};
+
+export default function TMCalc({ oneRM, setOneRM, TM, setTM }: Props) {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setOneRM((prevState) => ({
+    const valueInt = parseInt(value);
+    setOneRM((prevState: typeof oneRM) => ({
       ...prevState,
-      [name]: Math.floor(value),
+      [name]: Math.floor(valueInt),
     }));
 
-    setTM((prevState) => ({
+    setTM((prevState: typeof TM) => ({
       ...prevState,
-      [name]: calcPlate(value * 0.9, 2.5),
+      [name]: calcPlate(valueInt * 0.9, 2.5),
     }));
   }
 

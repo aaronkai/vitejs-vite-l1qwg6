@@ -1,32 +1,24 @@
-import { calcPlate } from './helpers';
-
-const percentages = [
-  [0.4, 0.5, 0.6, 0.65, 0.75, 0.85, 0.65],
-  [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.7],
-  [0.4, 0.5, 0.6, 0.75, 0.85, 0.95, 0.75],
-];
-const sets = [
-  [1, 1, 1, 1, 1, 1, 5],
-  [1, 1, 1, 1, 1, 1, 5],
-  [1, 1, 1, 1, 1, 1, 5],
-];
-const reps = [
-  [5, 5, 3, 5, 5, 5, 5],
-  [5, 5, 3, 3, 3, 3, 5],
-  [5, 5, 3, 5, 3, 1, 5],
-];
+import { calcPlate, percentages, sets, reps } from "../helpers";
+import { useState } from "react";
+import ExercisePicker from "./ExercisePicker";
 
 const plateSize = 5;
-const dayOneExercises = ['squat', 'bench'];
-const dayTwoExercise = [];
 
 export default function WorkoutTable({ week, TM }) {
+  const [exercise, setExercise] = useState("squat");
+  const exercises = Object.keys(TM);
+  // console.log({ exercises });
   return (
     <div>
+      <ExercisePicker
+        selectedExercise={exercise}
+        allExercises={exercises}
+        setExercise={setExercise}
+      />
       <table>
         <thead>
           <tr>
-            <th colSpan={3}>Squat</th>
+            <th colSpan={3}>{exercise}</th>
           </tr>
           <tr>
             <th>Sets</th>
@@ -38,13 +30,13 @@ export default function WorkoutTable({ week, TM }) {
           {percentages[week].map((percentage, i) => (
             <tr key={i}>
               <td>{sets[week][i]}</td>
-              <td>{calcPlate(TM.squat * percentage, plateSize)}</td>
+              <td>{calcPlate(TM[exercise] * percentage, plateSize)}</td>
               <td>{reps[week][i]}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th colSpan={3}>Bench</th>
@@ -64,7 +56,7 @@ export default function WorkoutTable({ week, TM }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
       {/* <p>table</p>
       <table>
         <tbody>

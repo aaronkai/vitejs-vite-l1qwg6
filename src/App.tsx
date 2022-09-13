@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
-import Nav from "./Nav";
-import TMCalc from "./TMCalc";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import TMCalc from "./components/TMCalc";
 import { useCookies } from "react-cookie";
-import WorkoutTable from "./WorkoutTable";
-import WeekPicker from "./WeekPicker";
+import WorkoutTable from "./components/WorkoutTable";
+import WeekPicker from "./components/WeekPicker";
 
 function App() {
   const [cookies, setCookie] = useCookies(["oneRM"]);
   //initialize TM and oneRM at zero
   let [squat, bench, deadlift, overhead] = [0, 0, 0, 0];
-  let squatTM,
-    benchTM,
-    deadliftTM,
-    overheadTM = [0, 0, 0, 0];
+  let [squatTM, benchTM, deadliftTM, overheadTM] = [0, 0, 0, 0];
 
   //if user has been to the site before, load their oneRM from cookies and derive TM
   if (cookies.oneRM) {
