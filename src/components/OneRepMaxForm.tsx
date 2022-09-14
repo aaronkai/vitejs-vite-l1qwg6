@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { calcPlate } from "../helpers";
+import { useCookies } from "react-cookie";
 
 type Props = {
   oneRM: {
@@ -18,9 +19,18 @@ type Props = {
   };
   setOneRM: any;
   setTM: any;
+  setFormVisible: any;
+  setCookie: any;
 };
 
-export default function OneRepMaxForm({ oneRM, setOneRM, TM, setTM }: Props) {
+export default function OneRepMaxForm({
+  oneRM,
+  setOneRM,
+  TM,
+  setTM,
+  setFormVisible,
+  setCookie,
+}: Props) {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     const valueInt = parseInt(value);
@@ -35,17 +45,16 @@ export default function OneRepMaxForm({ oneRM, setOneRM, TM, setTM }: Props) {
   }
 
   function handleSubmit(event) {
-    console.log(event);
-    console.log("form submitted");
     event.preventDefault();
-    //ToDO: Hide form and display TMs
+    setFormVisible(false);
+    setCookie("TMsLogged", true, { path: "/" });
   }
 
   const exercises = Object.keys(oneRM);
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl">TMCalc</h2>
+      <h2 className="text-2xl">Enter Your One-Rep Maxes</h2>
 
       <div>
         <form onSubmit={handleSubmit}>
