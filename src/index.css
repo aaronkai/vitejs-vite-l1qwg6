@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply text-2xl;
+  }
+
+  p,
+  h2,
+  h1,
+  input,
+  h3,
+  label,
+  button,
+  th,
+  td,
+  li,
+  a {
+    @apply text-yellow-200;
+    font-family: "Fugaz One", cursive;
+  }
+}

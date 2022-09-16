@@ -21,3 +21,7 @@ export const reps = [
   [5, 5, 3, 3, 3, 3, 5],
   [5, 5, 3, 5, 3, 1, 5],
 ];
+
+export function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

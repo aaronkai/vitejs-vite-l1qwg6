@@ -1,7 +1,7 @@
 export default function Header({ title }) {
   return (
-    <header>
-      <h1 className="text-5xl">{title}</h1>
+    <header className="">
+      <h1 className="text-5xl my-4 text-yellow-200">{title}</h1>
     </header>
   );
 }

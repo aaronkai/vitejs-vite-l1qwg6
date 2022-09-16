@@ -1,6 +1,5 @@
-import React, { ChangeEvent } from "react";
-import { calcPlate } from "../helpers";
-import { useCookies } from "react-cookie";
+import { ChangeEvent } from "react";
+import { calcPlate, capitalize } from "../helpers";
 
 type Props = {
   oneRM: {
@@ -53,7 +52,7 @@ export default function OneRepMaxForm({
   const exercises = Object.keys(oneRM);
 
   return (
-    <div className="flex flex-col">
+    <div className="p-2">
       <h2 className="text-2xl">Enter Your One-Rep Maxes</h2>
 
       <div>
@@ -61,8 +60,8 @@ export default function OneRepMaxForm({
           {exercises.map((exercise) => {
             return (
               <div key={exercise}>
-                <label htmlFor={exercise}>
-                  {exercise} 1RM:
+                <label htmlFor={exercise} className="block mt-2">
+                  {capitalize(exercise)} 1RM:
                   <input
                     type="text"
                     value={oneRM[exercise] || ""}
@@ -70,6 +69,9 @@ export default function OneRepMaxForm({
                     name={exercise}
                     tabIndex={1}
                     onChange={(e) => handleChange(e)}
+                    required
+                    className="block w-full col-span-2"
+                    // className="bg-slate-50 border border-slate-300 focus:ring-2 text-slate-900 text-sm rounded focus:border-slate-300 focus:ring-blue-500 block w-full p-2 col-span-2"
                   />
                 </label>
                 {/* <p>TM: {`${TM[exercise]}`}</p> */}
@@ -81,4 +83,7 @@ export default function OneRepMaxForm({
       </div>
     </div>
   );
+}
+{
+  /* <input type="number" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required> */
 }

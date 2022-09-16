@@ -10,15 +10,15 @@ export default function Button({
   let icon;
   if (sets < 6) {
     if (!exerciseCompletion[exercise][sets]) {
-      icon = <StarIcon className="w-6 h-6" />;
+      icon = <StarIcon className="w-8 h-8" />;
     } else {
-      icon = <CheckCircleIcon className="w-6 h-6" />;
+      icon = <CheckCircleIcon className="w-8 h-8" />;
     }
   } else {
     if (!exerciseCompletion[exercise][sets][row]) {
-      icon = <StarIcon className="w-6 h-6" />;
+      icon = <StarIcon className="w-8 h-8" />;
     } else {
-      icon = <CheckCircleIcon className="w-6 h-6" />;
+      icon = <CheckCircleIcon className="w-8 h-8" />;
     }
   }
 
