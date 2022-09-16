@@ -77,6 +77,8 @@ function App() {
           url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
           @import
           url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+          @import
+          url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
         </style>
       </Helmet>
       <div className=" bg-slate-800 min-h-screen ">
@@ -96,11 +98,15 @@ function App() {
               setCookie={setCookie}
             />
           )}
-          <div className="grid grid-row-3 content-start gap-4 p-2">
-            <TrainingMaxDisplay TM={TM} />
-            <WeekPicker week={week} setWeek={setWeek} />
-            <WorkoutTable week={week} TM={TM} />
-          </div>
+          {!formVisible && (
+            <div className="grid grid-row-3 content-start">
+              <TrainingMaxDisplay TM={TM} />
+              <div className="">
+                <WeekPicker week={week} setWeek={setWeek} />
+                <WorkoutTable week={week} TM={TM} />
+              </div>
+            </div>
+          )}
           <Footer />
         </div>
       </div>

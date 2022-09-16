@@ -12,7 +12,7 @@ export default function WeekPicker({ week, setWeek }) {
         {weeks.map((week) => {
           return (
             <button
-              className={` rounded text-slate-900 font-display text-xl py-2 ${
+              className={`text-slate-900 font-display text-lg font-bold uppercase py-2 ${
                 week == selectedWeek ? "bg-pink-300" : "bg-yellow-200"
               }`}
               onClick={() => handleClick(week)}

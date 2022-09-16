@@ -17,11 +17,11 @@ export default function ExercisePicker({
     setExercise(exercise);
   }
   return (
-    <div className="grid grid-flow-col gap-x-1 ">
+    <div className="grid grid-flow-col gap-x-1 mt-1 mb-1">
       {allExercises.map((exercise) => {
         return (
           <button
-            className={` text-slate-900 font-display text-lg rounded py-1 ${
+            className={` text-slate-900 font-display text-lg  py-1 ${
               selectedExercise == exercise ? "bg-pink-300" : "bg-yellow-200"
             }`}
             key={exercise}

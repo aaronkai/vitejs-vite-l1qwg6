@@ -6,10 +6,10 @@ export default function Nav({ setFormVisible, setCookie }) {
   return (
     <nav>
       <ul className="flex justify-between">
-        <li className="font-normal text-xl text-yellow-200">1RM Calculator</li>
-        <li className="font-normal text-xl text-yellow-200">About</li>
+        <li className="font-normal text-xl text-slate-400">1RM Calculator</li>
+        <li className="font-normal text-xl text-slate-400">About</li>
         <li
-          className="font-normal text-xl text-yellow-200"
+          className="font-normal text-xl text-slate-400"
           onClick={() => handleClick()}
         >
           1-Rep Maxes

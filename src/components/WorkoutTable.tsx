@@ -48,26 +48,26 @@ export default function WorkoutTable({ week, TM }) {
   });
   const exercises = Object.keys(TM);
   return (
-    <div className="grid gap-12 mb-8">
+    <div className="grid">
       <ExercisePicker
         selectedExercise={exercise}
         allExercises={exercises}
         setExercise={setExercise}
       />
-      <table className="w-full">
+      <table className="m-2 border-2 border-yellow-200">
         <thead>
           <tr>
             <th
               colSpan={3}
-              className="text-2xl font-normal bg-yellow-200 text-slate-900 "
+              className="text-2xl font-bold uppercase bg-yellow-200 text-slate-900 py-2 "
             >
               {capitalize(exercise)} Week {week + 1}
             </th>
           </tr>
           <tr>
-            <th className="p-2 text-2xl font-normal">Sets</th>
-            <th className="p-2 text-2xl font-normal">Weight</th>
-            <th className="p-2 text-2xl font-normal">Reps</th>
+            <th className="p-2 text-2xl text-slate-100">Sets</th>
+            <th className="p-2 text-2xl text-slate-100">Weight</th>
+            <th className="p-2 text-2xl text-slate-100">Reps</th>
           </tr>
         </thead>
         <tbody>
@@ -87,10 +87,10 @@ export default function WorkoutTable({ week, TM }) {
                   );
                 })}
               </td>
-              <td className="text-center text-xl text-normal">
+              <td className="text-center text-xl text-slate-100  text-slate-100">
                 {calcPlate(TM[exercise] * percentage, plateSize)}
               </td>
-              <td className="text-center text-xl text-normal">
+              <td className="text-center text-xl  text-slate-100 ">
                 {reps[week][i]}
               </td>
             </tr>

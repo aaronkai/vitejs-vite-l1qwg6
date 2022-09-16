@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Fugaz One", ...defaultTheme.fontFamily.sans],
+        display: ["Rubik", ...defaultTheme.fontFamily.sans],
       },
     },
   },

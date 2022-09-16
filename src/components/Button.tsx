@@ -10,15 +10,15 @@ export default function Button({
   let icon;
   if (sets < 6) {
     if (!exerciseCompletion[exercise][sets]) {
-      icon = <StarIcon className="w-8 h-8" />;
+      icon = <StarIcon className="w-8 h-8 text-pink-300" />;
     } else {
-      icon = <CheckCircleIcon className="w-8 h-8" />;
+      icon = <CheckCircleIcon className="w-8 h-8 text-green-300" />;
     }
   } else {
     if (!exerciseCompletion[exercise][sets][row]) {
-      icon = <StarIcon className="w-8 h-8" />;
+      icon = <StarIcon className="w-8 h-8 text-pink-300" />;
     } else {
-      icon = <CheckCircleIcon className="w-8 h-8" />;
+      icon = <CheckCircleIcon className="w-8 h-8 text-green-300" />;
     }
   }
 
@@ -27,7 +27,7 @@ export default function Button({
     if (sets < 6) {
       let state = exerciseCompletion[exercise];
       state[sets] = !state[sets];
-      console.log(state);
+      // console.log(state);
       setExerciseCompletion((prevState) => ({
         ...prevState,
         exercise: state,
@@ -35,7 +35,7 @@ export default function Button({
     } else {
       let state = exerciseCompletion[exercise];
       state[sets][row] = !state[sets][row];
-      console.log(state);
+      // console.log(state);
       setExerciseCompletion((prevState) => ({
         ...prevState,
         exercise: state,

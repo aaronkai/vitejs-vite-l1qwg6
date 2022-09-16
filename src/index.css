@@ -19,6 +19,7 @@
   li,
   a {
     @apply text-yellow-200;
-    font-family: "Fugaz One", cursive;
+    /* font-family: "Fugaz One", cursive; */
+    font-family: "Rubik", sans-serif;
   }
 }
