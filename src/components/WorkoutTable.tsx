@@ -3,6 +3,8 @@ import { useState } from "react";
 import ExercisePicker from "./ExercisePicker";
 import Button from "./Button";
 import { capitalize } from "../helpers";
+import CountdownTimer from "./CountdownTimer";
+
 
 interface Props{
   TM: {
@@ -66,6 +68,7 @@ export default function WorkoutTable({ week, TM }:Props) {
         allExercises={exercises}
         setExercise={setExercise}
       />
+       <CountdownTimer seconds={3} />  
       <table className="m-2 border-2 border-yellow-200">
         <thead>
           <tr>
@@ -75,6 +78,7 @@ export default function WorkoutTable({ week, TM }:Props) {
             >
               {capitalize(exercise)} Week {week + 1}
             </th>
+             
           </tr>
           <tr>
             <th className="p-2 text-2xl text-slate-100">Sets</th>
