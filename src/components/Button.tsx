@@ -11,6 +11,8 @@ interface Props{
   setExerciseCompletion: any;
   sets: number;
   row: number;
+  boop: boolean;
+  setBoop: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 import { StarIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
@@ -20,6 +22,8 @@ export default function Button({
   setExerciseCompletion,
   sets,
   row,
+  boop,
+  setBoop
 }:Props) {
   let icon;
   if (sets < 6) {
@@ -37,11 +41,9 @@ export default function Button({
   }
 
   function handleClick() {
-    // setChecked(!checked);
     if (sets < 6) {
       let state = exerciseCompletion[exercise];
       state[sets] = !state[sets];
-      // console.log(state);
       setExerciseCompletion((prevState: typeof exerciseCompletion) => ({
         ...prevState,
         exercise: state,
@@ -49,17 +51,21 @@ export default function Button({
     } else {
       let state = exerciseCompletion[exercise];
       state[sets][row] = !state[sets][row];
-      // console.log(state);
       setExerciseCompletion((prevState: typeof exerciseCompletion) => ({
         ...prevState,
         exercise: state,
       }));
     }
   }
-
+  function toggleBoop(){
+    setBoop((prev) => !prev);
+  }
   return (
     <div>
-      <button onClick={() => handleClick()}>{icon}</button>
+      <button onClick={() => {
+        handleClick();
+        toggleBoop();
+      }}>{icon}</button>
     </div>
   );
 }

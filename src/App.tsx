@@ -99,7 +99,7 @@ function App() {
             />
           )}
           {!formVisible && (
-            <div className="grid grid-row-3 content-start">
+            <div className="grid grid-row-3 content-start p-4">
               
               <div className="">
                 <WorkoutTable week={week} setWeek={setWeek} TM={TM} setFormVisible={setFormVisible} />

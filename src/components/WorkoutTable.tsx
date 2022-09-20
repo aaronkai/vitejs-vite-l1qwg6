@@ -1,5 +1,5 @@
 import { calcPlate, percentages, sets, reps } from "../helpers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExercisePicker from "./ExercisePicker";
 import Button from "./Button";
 import { capitalize } from "../helpers";
@@ -65,6 +65,7 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
     ],
   });
   const exercises = Object.keys(TM);
+  const [boop, setBoop] = useState(false);
   return (
     <div className="grid gap-1">
 
@@ -75,8 +76,8 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
         allExercises={exercises}
         setExercise={setExercise}
       />
-       <CountdownTimer seconds={3} />  
-      <table className=" ">
+       <CountdownTimer seconds={90} boop={boop} setBoop={setBoop} />  
+      <table className="border-b-4 border-x-4 border-yellow-200 ">
         <thead>
           <tr>
             <th
@@ -106,6 +107,8 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
                       sets={i}
                       row={j}
                       key={exercise + i + j}
+                      boop={boop} 
+                      setBoop={setBoop}
                     />
                   );
                 })}
