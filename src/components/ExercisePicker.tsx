@@ -15,7 +15,7 @@ export default function ExercisePicker({
     setExercise(exercise);
   }
   return (
-    <div className="grid grid-flow-col gap-x-1 mt-1 mb-1">
+    <div className="grid grid-flow-col gap-x-1">
       {allExercises.map((exercise) => {
         return (
           <button

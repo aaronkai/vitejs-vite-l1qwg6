@@ -4,6 +4,8 @@ import ExercisePicker from "./ExercisePicker";
 import Button from "./Button";
 import { capitalize } from "../helpers";
 import CountdownTimer from "./CountdownTimer";
+import TrainingMaxDisplay from "./TrainingMaxDisplay";
+import WeekPicker from "./WeekPicker";
 
 
 interface Props{
@@ -16,11 +18,13 @@ interface Props{
 
 };
   week: number;
+  setWeek:  React.Dispatch<React.SetStateAction<number>>;
+  setFormVisible:  React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const plateSize = 5;
 
-export default function WorkoutTable({ week, TM }:Props) {
+export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props) {
   const [exercise, setExercise] = useState("squat");
   const [exerciseCompletion, setExerciseCompletion] = useState({
     squat: [
@@ -62,14 +66,17 @@ export default function WorkoutTable({ week, TM }:Props) {
   });
   const exercises = Object.keys(TM);
   return (
-    <div className="grid">
+    <div className="grid gap-1">
+
+      <TrainingMaxDisplay TM={TM} setFormVisible={setFormVisible} />
+      <WeekPicker week={week} setWeek={setWeek} />
       <ExercisePicker
         selectedExercise={exercise}
         allExercises={exercises}
         setExercise={setExercise}
       />
        <CountdownTimer seconds={3} />  
-      <table className="m-2 border-2 border-yellow-200">
+      <table className=" ">
         <thead>
           <tr>
             <th

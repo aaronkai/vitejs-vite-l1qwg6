@@ -85,7 +85,7 @@ function App() {
         <div className=" grid grid-rows-[auto_1fr_auto] min-h-screen">
           <header className="border-b-4 border-b-yellow-200 p-4">
             <Header title="5/3/1" />
-            <Nav setFormVisible={setFormVisible} setCookie={setCookie} />
+            {/* <Nav setFormVisible={setFormVisible} setCookie={setCookie} /> */}
           </header>
 
           {formVisible && (
@@ -100,10 +100,9 @@ function App() {
           )}
           {!formVisible && (
             <div className="grid grid-row-3 content-start">
-              <TrainingMaxDisplay TM={TM} />
+              
               <div className="">
-                <WeekPicker week={week} setWeek={setWeek} />
-                <WorkoutTable week={week} TM={TM} />
+                <WorkoutTable week={week} setWeek={setWeek} TM={TM} setFormVisible={setFormVisible} />
               </div>
             </div>
           )}
