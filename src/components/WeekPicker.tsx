@@ -1,5 +1,10 @@
 import { useState } from "react";
-export default function WeekPicker({ week, setWeek }) {
+
+interface Props {
+  week: number;
+  setWeek: React.Dispatch<React.SetStateAction<number>>
+}
+export default function WeekPicker({ week, setWeek }:Props) {
   const [selectedWeek, setSelectedWeek] = useState(1);
   function handleClick(value: number) {
     setWeek(value - 1);

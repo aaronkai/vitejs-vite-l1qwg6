@@ -11,9 +11,7 @@ export default function ExercisePicker({
   allExercises,
   setExercise,
 }: Props) {
-  function handleClick(e, exercise) {
-    console.log({ e, exercise });
-    // setExercise(e.target.innerText);
+  function handleClick(exercise: string) {
     setExercise(exercise);
   }
   return (
@@ -25,7 +23,7 @@ export default function ExercisePicker({
               selectedExercise == exercise ? "bg-pink-300" : "bg-yellow-200"
             }`}
             key={exercise}
-            onClick={(e) => handleClick(e, exercise)}
+            onClick={(e) => handleClick(exercise)}
           >
             {capitalize(exercise)}
           </button>

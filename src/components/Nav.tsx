@@ -1,4 +1,10 @@
-export default function Nav({ setFormVisible, setCookie }) {
+interface Props{
+  setFormVisible:  React.Dispatch<React.SetStateAction< boolean>>;
+  //ToDo: fix typing
+  setCookie: any;
+}
+
+export default function Nav({ setFormVisible, setCookie }:Props) {
   function handleClick() {
     setFormVisible(true);
     setCookie("TMsLogged", false, { path: "/" });

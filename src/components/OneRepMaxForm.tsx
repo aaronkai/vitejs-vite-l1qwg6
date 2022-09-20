@@ -1,20 +1,20 @@
 import { ChangeEvent } from "react";
 import { calcPlate, capitalize } from "../helpers";
 
-type Props = {
+interface Props {
   oneRM: {
-    squat: Number;
-    bench: Number;
-    deadlift: Number;
-    overhead: Number;
-    [index: string]: Number;
+    squat: number;
+    bench: number;
+    deadlift: number;
+    overhead: number;
+    [index: string]: number;
   };
   TM: {
-    squat: Number;
-    bench: Number;
-    deadlift: Number;
-    overhead: Number;
-    [index: string]: Number | undefined;
+    squat: number;
+    bench: number;
+    deadlift: number;
+    overhead: number;
+    [index: string]: number | undefined;
   };
   setOneRM: any;
   setTM: any;
@@ -43,7 +43,7 @@ export default function OneRepMaxForm({
     }));
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event:React.FormEvent) {
     event.preventDefault();
     setFormVisible(false);
     setCookie("TMsLogged", true, { path: "/" });
@@ -76,10 +76,8 @@ export default function OneRepMaxForm({
                     onChange={(e) => handleChange(e)}
                     required
                     className="block w-full col-span-2 text-slate-900 border-2 border-slate-900"
-                    // className="bg-slate-50 border border-slate-300 focus:ring-2 text-slate-900 text-sm rounded focus:border-slate-300 focus:ring-blue-500 block w-full p-2 col-span-2"
                   />
                 </label>
-                {/* <p>TM: {`${TM[exercise]}`}</p> */}
               </div>
             );
           })}

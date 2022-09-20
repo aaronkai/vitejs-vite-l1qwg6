@@ -4,9 +4,21 @@ import ExercisePicker from "./ExercisePicker";
 import Button from "./Button";
 import { capitalize } from "../helpers";
 
+interface Props{
+  TM: {
+    squat: number;
+    bench: number;
+    deadlift: number;
+    overhead: number;
+    [index: string]: number;
+
+};
+  week: number;
+}
+
 const plateSize = 5;
 
-export default function WorkoutTable({ week, TM }) {
+export default function WorkoutTable({ week, TM }:Props) {
   const [exercise, setExercise] = useState("squat");
   const [exerciseCompletion, setExerciseCompletion] = useState({
     squat: [

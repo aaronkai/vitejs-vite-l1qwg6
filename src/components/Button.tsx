@@ -1,3 +1,18 @@
+interface Props{
+  exercise: string
+  exerciseCompletion: {
+    squat: (boolean | boolean[])[];
+    bench: (boolean | boolean[])[];
+    deadlift: (boolean | boolean[])[];
+    overhead: (boolean | boolean[])[];
+    //ToDo: fix type
+    [index:string]:  any;
+};
+  setExerciseCompletion: any;
+  sets: number;
+  row: number;
+}
+
 import { StarIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 export default function Button({
   exercise,
@@ -5,8 +20,7 @@ export default function Button({
   setExerciseCompletion,
   sets,
   row,
-}) {
-  // const [checked, setChecked] = useState(false);
+}:Props) {
   let icon;
   if (sets < 6) {
     if (!exerciseCompletion[exercise][sets]) {
@@ -28,7 +42,7 @@ export default function Button({
       let state = exerciseCompletion[exercise];
       state[sets] = !state[sets];
       // console.log(state);
-      setExerciseCompletion((prevState) => ({
+      setExerciseCompletion((prevState: typeof exerciseCompletion) => ({
         ...prevState,
         exercise: state,
       }));
@@ -36,7 +50,7 @@ export default function Button({
       let state = exerciseCompletion[exercise];
       state[sets][row] = !state[sets][row];
       // console.log(state);
-      setExerciseCompletion((prevState) => ({
+      setExerciseCompletion((prevState: typeof exerciseCompletion) => ({
         ...prevState,
         exercise: state,
       }));

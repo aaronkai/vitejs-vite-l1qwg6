@@ -1,6 +1,17 @@
 import { capitalize } from "../helpers";
 
-export default function TrainingMaxDisplay({ TM }) {
+interface Props {
+  TM: {
+    squat: number;
+    bench: number;
+    deadlift: number;
+    overhead: number;
+    [index: string]: number;
+
+}
+}
+
+export default function TrainingMaxDisplay({ TM }: Props) {
   return (
     <div className="bg-yellow-200 mb-12 py-2">
       <h2 className="pl-4 text-xl uppercase font-bold text-slate-900 font-display  underline-offset-4">
