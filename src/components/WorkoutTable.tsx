@@ -87,7 +87,7 @@ export default function WorkoutTable({
         allExercises={exercises}
         setExercise={setExercise}
       />
-      <CountdownTimer seconds={1} boop={boop} setBoop={setBoop} />
+      <CountdownTimer seconds={90} boop={boop} setBoop={setBoop} />
       <table className="border-b-4 border-x-4 border-yellow-200 ">
         <thead>
           <tr>

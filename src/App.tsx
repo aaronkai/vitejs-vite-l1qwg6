@@ -25,12 +25,6 @@ function App() {
         deadlift * 0.9,
         overhead * 0.9,
       ];
-      // setCookie("TM", {
-      //   squat: cookies.oneRM.squat,
-      //   deadlift: cookies.oneRM.deadlift,
-      //   overhead: cookies.oneRM.overhead,
-      //   bench: cookies.oneRM.bench,
-      // });
     }
   }
 
@@ -40,21 +34,6 @@ function App() {
     deadlift,
     overhead,
   });
-
-  // if (cookies.TM) {
-  //   console.log(cookies.TM);
-  // } else if (cookies.oneRM) {
-  //   console.log("1RM cookie exists");
-  //   console.log(cookies.oneRM);
-  //   // setTM((prevState) => ({
-  //   //   bench: cookies.oneRM.bench,
-  //   //   squat: cookies.oneRM.squat,
-  //   //   overhead: cookies.oneRM.overhead,
-  //   //   deadlift: cookies.oneRM.deadlift,
-  //   // }));
-  // } else {
-  //   console.log("no TM or 1RM cookie");
-  // }
 
   if (cookies.TM) {
     [squatTM, benchTM, deadliftTM, overheadTM] = [

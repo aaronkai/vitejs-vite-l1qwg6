@@ -39,7 +39,7 @@ export default function OneRepMaxForm({
     }));
     setTM((prevState: typeof TM) => ({
       ...prevState,
-      [name]: calcPlate(valueInt * 0.9, 1),
+      [name]: calcPlate(valueInt * 0.9, 2.5),
     }));
   }
 

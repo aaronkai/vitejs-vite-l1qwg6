@@ -28,15 +28,15 @@ export default function Button({
   let icon;
   if (sets < 6) {
     if (!exerciseCompletion[exercise][sets]) {
-      icon = <StarIcon className="w-8 h-8 text-pink-300" />;
+      icon = <StarIcon className="w-6 h-6 text-pink-300" />;
     } else {
-      icon = <CheckCircleIcon className="w-8 h-8 text-green-300" />;
+      icon = <CheckCircleIcon className="w-6 h-6 text-green-300" />;
     }
   } else {
     if (!exerciseCompletion[exercise][sets][row]) {
-      icon = <StarIcon className="w-8 h-8 text-pink-300" />;
+      icon = <StarIcon className="w-6 h-6 text-pink-300" />;
     } else {
-      icon = <CheckCircleIcon className="w-8 h-8 text-green-300" />;
+      icon = <CheckCircleIcon className="w-6 h-6 text-green-300" />;
     }
   }
 
