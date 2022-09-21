@@ -7,24 +7,27 @@ import CountdownTimer from "./CountdownTimer";
 import TrainingMaxDisplay from "./TrainingMaxDisplay";
 import WeekPicker from "./WeekPicker";
 
-
-interface Props{
+interface Props {
   TM: {
     squat: number;
     bench: number;
     deadlift: number;
     overhead: number;
     [index: string]: number;
-
-};
+  };
   week: number;
-  setWeek:  React.Dispatch<React.SetStateAction<number>>;
-  setFormVisible:  React.Dispatch<React.SetStateAction<boolean>>;
+  setWeek: React.Dispatch<React.SetStateAction<number>>;
+  setFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const plateSize = 5;
+const plateSize = 2.5;
 
-export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props) {
+export default function WorkoutTable({
+  week,
+  TM,
+  setWeek,
+  setFormVisible,
+}: Props) {
   const [exercise, setExercise] = useState("squat");
   const [exerciseCompletion, setExerciseCompletion] = useState({
     squat: [
@@ -68,7 +71,6 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
   const [boop, setBoop] = useState(false);
   return (
     <div className="grid gap-1">
-
       <TrainingMaxDisplay TM={TM} setFormVisible={setFormVisible} />
       <WeekPicker week={week} setWeek={setWeek} />
       <ExercisePicker
@@ -76,28 +78,28 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
         allExercises={exercises}
         setExercise={setExercise}
       />
-       <CountdownTimer seconds={90} boop={boop} setBoop={setBoop} />  
+      <CountdownTimer seconds={1} boop={boop} setBoop={setBoop} />
       <table className="border-b-4 border-x-4 border-yellow-200 ">
         <thead>
           <tr>
             <th
-              colSpan={3}
+              colSpan={4}
               className="text-2xl font-bold uppercase bg-yellow-200 text-slate-900 py-2 "
             >
               {capitalize(exercise)} Week {week + 1}
             </th>
-             
           </tr>
           <tr>
-            <th className="p-2 text-2xl text-slate-100">Sets</th>
-            <th className="p-2 text-2xl text-slate-100">Weight</th>
-            <th className="p-2 text-2xl text-slate-100">Reps</th>
+            <th className="p-2 text-xl text-slate-100">Sets</th>
+            <th className="p-2 text-xl text-slate-100">Lbs</th>
+            <th className="p-2 text-xl text-slate-100">Lbs/side</th>
+            <th className="p-2 text-xl text-slate-100">Reps</th>
           </tr>
         </thead>
         <tbody>
           {percentages[week].map((percentage, i) => (
             <tr key={i}>
-              <td className="flex flex-row justify-around">
+              <td className="flex flex-row justify-around flex-wrap">
                 {[...Array(sets[week][i])].map((x, j) => {
                   return (
                     <Button
@@ -107,14 +109,17 @@ export default function WorkoutTable({ week, TM, setWeek, setFormVisible }:Props
                       sets={i}
                       row={j}
                       key={exercise + i + j}
-                      boop={boop} 
+                      boop={boop}
                       setBoop={setBoop}
                     />
                   );
                 })}
               </td>
               <td className="text-center text-xl text-slate-100  text-slate-100">
-                {calcPlate(TM[exercise] * percentage, plateSize)}
+                {calcPlate(TM[exercise] * percentage, 5)}
+              </td>
+              <td className="text-center text-xl text-slate-100  text-slate-100">
+                {calcPlate((TM[exercise] * percentage - 45) / 2, 2.5)}
               </td>
               <td className="text-center text-xl  text-slate-100 ">
                 {reps[week][i]}

@@ -1,81 +1,84 @@
-import { ClockIcon } from '@heroicons/react/24/solid';
-import {useEffect, useState, useRef} from 'react'
+import { ClockIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState, useRef } from "react";
 
-interface Props{
-    seconds: number;
-    boop: boolean;
-    setBoop: React.Dispatch<React.SetStateAction<boolean>>;
+interface Props {
+  seconds: number;
+  boop: boolean;
+  setBoop: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export default function CountdownTimer({seconds, boop, setBoop}:Props){
+export default function CountdownTimer({ seconds, boop, setBoop }: Props) {
+  const [time, setTime] = useState(seconds);
+  const [expired, setExpired] = useState(false);
+  const [running, setRunning] = useState(false);
+  let intervalRef: any = useRef();
 
-    const [time, setTime] = useState(seconds);
-    const [expired, setExpired] = useState(false);
-    const [running, setRunning] = useState(false);
-    let intervalRef:any = useRef();
+  function tick() {
+    setTime((prev) => prev - 1);
+  }
 
-    function tick(){
-        setTime((prev) => prev -1);
+  function startTimer() {
+    intervalRef.current = setInterval(tick, 1000);
+    setRunning(true);
+  }
+
+  function stopTimer() {
+    setTime(seconds);
+    setExpired(false);
+    setRunning(() => false);
+    clearInterval(intervalRef.current);
+  }
+
+  function handleClick() {
+    if (running) {
+      stopTimer();
+    } else {
+      startTimer();
     }
+  }
 
-    function startTimer(){
-        intervalRef.current = setInterval(tick, 1000);
-        setRunning(true);
+  function timerColor() {
+    if (running && !expired) {
+      return "bg-pink-300";
     }
-
-    function stopTimer(){
-        setTime(seconds);
-        setExpired(false);
-        setRunning(() => false);
-        clearInterval(intervalRef.current);
+    if (expired) {
+      return "bg-red-500";
     }
-
-    function handleClick(){
-        if (running) {
-            // setTime(seconds);
-            // setExpired(false);
-            // setRunning(() => false);
-            // clearInterval(intervalRef.current);
-            stopTimer();
-        } else{
-            // intervalRef.current = setInterval(tick, 1000);
-            // setRunning(true);
-            startTimer();
-        }
+    if (!running) {
+      return "bg-green-300";
     }
+  }
 
-    function timerColor(){
-        if (running && !expired){
-            return 'bg-pink-300'
-        }
-        if (expired){
-            return 'bg-red-500'
-        }
-        if(!running){
-            return 'bg-green-200'
-        }
+  useEffect(() => {
+    if (time <= 0 && !expired) {
+      setExpired(true);
     }
+  }, [time, expired]);
 
-    useEffect(() => {
-        if (time<= 0 && !expired ){
-            setExpired(true)
-        }   
-    })
+  // start and stop the timer if the 'done' button in workoutTable is booped
+  useEffect(() => {
+    console.log({ boop });
+    if (!running && boop) {
+      console.log("I ran");
+      startTimer();
+    }
+    if (running && !boop) {
+      stopTimer();
+    }
+    if (running && boop) {
+      stopTimer();
+      startTimer();
+    }
+  }, [boop]);
 
-    useEffect(() => {
-        console.log({boop})
-        if (!running){
-            startTimer();
-        }
-       
-    },[boop])
-
-    return (
-        <div>
-            <button className={`text-5xl w-full text-slate-900 flex justify-center items-center ${timerColor()}`}
-            onClick={() => handleClick()}>
-                <ClockIcon className="w-10 h-10"/>
-                {time}
-            </button>
-        </div>
-    )
+  return (
+    <div>
+      <button
+        className={`text-5xl w-full text-slate-900 flex justify-center items-center ${timerColor()}`}
+        onClick={() => handleClick()}
+      >
+        <ClockIcon className="w-10 h-10" />
+        {time}
+      </button>
+    </div>
+  );
 }

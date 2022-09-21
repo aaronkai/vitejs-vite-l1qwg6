@@ -1,13 +1,13 @@
-interface Props{
-  exercise: string
+interface Props {
+  exercise: string;
   exerciseCompletion: {
     squat: (boolean | boolean[])[];
     bench: (boolean | boolean[])[];
     deadlift: (boolean | boolean[])[];
     overhead: (boolean | boolean[])[];
     //ToDo: fix type
-    [index:string]:  any;
-};
+    [index: string]: any;
+  };
   setExerciseCompletion: any;
   sets: number;
   row: number;
@@ -23,8 +23,8 @@ export default function Button({
   sets,
   row,
   boop,
-  setBoop
-}:Props) {
+  setBoop,
+}: Props) {
   let icon;
   if (sets < 6) {
     if (!exerciseCompletion[exercise][sets]) {
@@ -57,15 +57,21 @@ export default function Button({
       }));
     }
   }
-  function toggleBoop(){
+
+  function toggleBoop() {
     setBoop((prev) => !prev);
   }
+
   return (
     <div>
-      <button onClick={() => {
-        handleClick();
-        toggleBoop();
-      }}>{icon}</button>
+      <button
+        onClick={() => {
+          handleClick();
+          toggleBoop();
+        }}
+      >
+        {icon}
+      </button>
     </div>
   );
 }

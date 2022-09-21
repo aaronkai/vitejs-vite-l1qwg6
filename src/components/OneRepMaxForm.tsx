@@ -20,7 +20,7 @@ interface Props {
   setTM: any;
   setFormVisible: any;
   setCookie: any;
-};
+}
 
 export default function OneRepMaxForm({
   oneRM,
@@ -39,11 +39,11 @@ export default function OneRepMaxForm({
     }));
     setTM((prevState: typeof TM) => ({
       ...prevState,
-      [name]: calcPlate(valueInt * 0.9, 2.5),
+      [name]: calcPlate(valueInt * 0.9, 1),
     }));
   }
 
-  function handleSubmit(event:React.FormEvent) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setFormVisible(false);
     setCookie("TMsLogged", true, { path: "/" });
@@ -52,7 +52,7 @@ export default function OneRepMaxForm({
   const exercises = Object.keys(oneRM);
 
   return (
-    <div className="p-4  bg-yellow-200 self-start">
+    <div className=" m-4 p-4  bg-yellow-200 self-start">
       <h2 className="text-xl font-bold text-slate-900 uppercase">
         Enter Your One-Rep Maxes
       </h2>

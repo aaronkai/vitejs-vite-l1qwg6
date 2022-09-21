@@ -87,25 +87,30 @@ function App() {
             <Header title="5/3/1" />
             {/* <Nav setFormVisible={setFormVisible} setCookie={setCookie} /> */}
           </header>
-
-          {formVisible && (
-            <OneRepMaxForm
-              oneRM={oneRM}
-              setOneRM={setOneRM}
-              TM={TM}
-              setTM={setTM}
-              setFormVisible={setFormVisible}
-              setCookie={setCookie}
-            />
-          )}
-          {!formVisible && (
-            <div className="grid grid-row-3 content-start p-4">
-              
-              <div className="">
-                <WorkoutTable week={week} setWeek={setWeek} TM={TM} setFormVisible={setFormVisible} />
+          <div className=" w-full ">
+            {formVisible && (
+              <div className=" max-w-2xl mx-auto ">
+                <OneRepMaxForm
+                  oneRM={oneRM}
+                  setOneRM={setOneRM}
+                  TM={TM}
+                  setTM={setTM}
+                  setFormVisible={setFormVisible}
+                  setCookie={setCookie}
+                />
               </div>
-            </div>
-          )}
+            )}
+            {!formVisible && (
+              <div className="grid grid-row-3 content-start p-4 max-w-2xl mx-auto">
+                <WorkoutTable
+                  week={week}
+                  setWeek={setWeek}
+                  TM={TM}
+                  setFormVisible={setFormVisible}
+                />
+              </div>
+            )}
+          </div>
           <Footer />
         </div>
       </div>
