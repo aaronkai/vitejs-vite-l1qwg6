@@ -46,7 +46,7 @@ export default function OneRepMaxForm({
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setFormVisible(false);
-    setCookie("TMsLogged", true, { path: "/" });
+    setCookie("oneRMLogged", true, { path: "/" });
   }
 
   const exercises = Object.keys(oneRM);

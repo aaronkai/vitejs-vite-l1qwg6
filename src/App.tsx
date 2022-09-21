@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import { Helmet } from "react-helmet-async";
 
 function App() {
-  const [cookies, setCookie] = useCookies(["oneRM", "TMsLogged"]);
+  const [cookies, setCookie] = useCookies(["oneRM", "oneRMLogged", "TM"]);
   let squat, bench, deadlift, overhead;
   let [squatTM, benchTM, deadliftTM, overheadTM] = [0, 0, 0, 0];
   const [week, setWeek] = useState(0);
@@ -18,12 +18,20 @@ function App() {
 
   if (cookies.oneRM) {
     ({ squat, bench, deadlift, overhead } = cookies.oneRM);
-    [squatTM, benchTM, deadliftTM, overheadTM] = [
-      squat * 0.9,
-      bench * 0.9,
-      deadlift * 0.9,
-      overhead * 0.9,
-    ];
+    if (!cookies.TM) {
+      [squatTM, benchTM, deadliftTM, overheadTM] = [
+        squat * 0.9,
+        bench * 0.9,
+        deadlift * 0.9,
+        overhead * 0.9,
+      ];
+      // setCookie("TM", {
+      //   squat: cookies.oneRM.squat,
+      //   deadlift: cookies.oneRM.deadlift,
+      //   overhead: cookies.oneRM.overhead,
+      //   bench: cookies.oneRM.bench,
+      // });
+    }
   }
 
   const [oneRM, setOneRM] = useState({
@@ -32,6 +40,30 @@ function App() {
     deadlift,
     overhead,
   });
+
+  // if (cookies.TM) {
+  //   console.log(cookies.TM);
+  // } else if (cookies.oneRM) {
+  //   console.log("1RM cookie exists");
+  //   console.log(cookies.oneRM);
+  //   // setTM((prevState) => ({
+  //   //   bench: cookies.oneRM.bench,
+  //   //   squat: cookies.oneRM.squat,
+  //   //   overhead: cookies.oneRM.overhead,
+  //   //   deadlift: cookies.oneRM.deadlift,
+  //   // }));
+  // } else {
+  //   console.log("no TM or 1RM cookie");
+  // }
+
+  if (cookies.TM) {
+    [squatTM, benchTM, deadliftTM, overheadTM] = [
+      cookies.TM.squat,
+      cookies.TM.bench,
+      cookies.TM.deadlift,
+      cookies.TM.overhead,
+    ];
+  }
 
   const [TM, setTM] = useState({
     squat: squatTM,
@@ -53,16 +85,23 @@ function App() {
   }, [oneRM]);
 
   useEffect(() => {
+    if (TM.squat > 0 || TM.deadlift > 0 || TM.overhead > 0 || TM.bench > 0) {
+      console.log("setting TM cookie in TM use effect");
+      setCookie("TM", TM, { path: "/" });
+    }
+  }, [TM]);
+
+  useEffect(() => {
     console.log({ formVisible });
-    console.log("cookie tms " + cookies.TMsLogged);
-    if (cookies.TMsLogged == "true") {
-      console.log("tm set. set form invisible");
+    console.log("cookie one rep max " + cookies.oneRMLogged);
+    if (cookies.oneRMLogged == "true") {
+      console.log("1RM set. set form invisible");
       setFormVisible(false);
     } else {
-      console.log("no tm set. make form visible");
+      console.log("no 1RM set. make form visible");
       setFormVisible(true);
     }
-  }, [cookies.TMsLogged]);
+  }, [cookies.oneRMLogged]);
 
   return (
     <>

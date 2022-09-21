@@ -7,7 +7,7 @@ interface Props {
 export default function Nav({ setFormVisible, setCookie }: Props) {
   function handleClick() {
     setFormVisible(true);
-    setCookie("TMsLogged", false, { path: "/" });
+    setCookie("oneRMLogged", false, { path: "/" });
   }
   return (
     <nav>
