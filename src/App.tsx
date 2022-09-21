@@ -83,9 +83,9 @@ function App() {
       </Helmet>
       <div className=" bg-slate-800 min-h-screen ">
         <div className=" grid grid-rows-[auto_1fr_auto] min-h-screen">
-          <header className="border-b-4 border-b-yellow-200 p-4">
+          <header className="border-b-4 border-b-yellow-200 p-4 grid grid-cols-[1fr_auto]">
             <Header title="5/3/1" />
-            {/* <Nav setFormVisible={setFormVisible} setCookie={setCookie} /> */}
+            <Nav setFormVisible={setFormVisible} setCookie={setCookie} />
           </header>
           <div className=" w-full ">
             {formVisible && (
@@ -106,6 +106,7 @@ function App() {
                   week={week}
                   setWeek={setWeek}
                   TM={TM}
+                  setTM={setTM}
                   setFormVisible={setFormVisible}
                 />
               </div>

@@ -15,6 +15,14 @@ interface Props {
     overhead: number;
     [index: string]: number;
   };
+  setTM: React.Dispatch<
+    React.SetStateAction<{
+      squat: number;
+      bench: number;
+      deadlift: number;
+      overhead: number;
+    }>
+  >;
   week: number;
   setWeek: React.Dispatch<React.SetStateAction<number>>;
   setFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,6 +33,7 @@ const plateSize = 2.5;
 export default function WorkoutTable({
   week,
   TM,
+  setTM,
   setWeek,
   setFormVisible,
 }: Props) {
@@ -71,7 +80,7 @@ export default function WorkoutTable({
   const [boop, setBoop] = useState(false);
   return (
     <div className="grid gap-1">
-      <TrainingMaxDisplay TM={TM} setFormVisible={setFormVisible} />
+      <TrainingMaxDisplay TM={TM} setTM={setTM} />
       <WeekPicker week={week} setWeek={setWeek} />
       <ExercisePicker
         selectedExercise={exercise}
