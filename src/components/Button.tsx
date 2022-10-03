@@ -23,7 +23,9 @@ export default function Button({
   sets,
   row,
   boop,
-  setBoop,
+  // setBoop,
+  // timer,
+  setTimer
 }: Props) {
   let icon;
   if (sets < 6) {
@@ -40,7 +42,25 @@ export default function Button({
     }
   }
 
+  function stopTimer(){
+    console.log("stop Timer")
+    setTimer((prevState) => ({
+      ...prevState,
+      stopTimer: true,
+    }))
+  }
+  
+
+  function startTimer(){
+    console.log("start timer");
+    setTimer((prevState) => ({
+      ...prevState,
+      startTimer: true,
+    }))
+  }
+
   function handleClick() {
+
     if (sets < 6) {
       let state = exerciseCompletion[exercise];
       state[sets] = !state[sets];
@@ -48,6 +68,13 @@ export default function Button({
         ...prevState,
         exercise: state,
       }));
+      console.log(state[sets]);
+      if(state[sets]){
+        startTimer();
+      } else{
+        stopTimer();
+      }
+     
     } else {
       let state = exerciseCompletion[exercise];
       state[sets][row] = !state[sets][row];
@@ -55,19 +82,26 @@ export default function Button({
         ...prevState,
         exercise: state,
       }));
+      console.log(state[sets][row])
+      if (state[sets][row]){
+        startTimer();
+      } else{
+        stopTimer();
+      }
+      
     }
   }
 
-  function toggleBoop() {
-    setBoop((prev) => !prev);
-  }
+  // function toggleBoop() {
+  //   setBoop((prev) => !prev);
+  // }
 
   return (
     <div>
       <button
         onClick={() => {
           handleClick();
-          toggleBoop();
+          // toggleBoop();
         }}
       >
         {icon}

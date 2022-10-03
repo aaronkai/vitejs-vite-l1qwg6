@@ -4,8 +4,6 @@ import Nav from "./components/Nav";
 import OneRepMaxForm from "./components/OneRepMaxForm";
 import { useCookies } from "react-cookie";
 import WorkoutTable from "./components/WorkoutTable";
-import WeekPicker from "./components/WeekPicker";
-import TrainingMaxDisplay from "./components/TrainingMaxDisplay";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet-async";
 

@@ -6,7 +6,7 @@ interface Props {
   boop: boolean;
   setBoop: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export default function CountdownTimer({ seconds, boop, setBoop }: Props) {
+export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer }: Props) {
   const [time, setTime] = useState(seconds);
   const [expired, setExpired] = useState(false);
   const [running, setRunning] = useState(false);
@@ -16,23 +16,32 @@ export default function CountdownTimer({ seconds, boop, setBoop }: Props) {
     setTime((prev) => prev - 1);
   }
 
-  function startTimer() {
+  function start() {
+    console.log("start fired")
+
     intervalRef.current = setInterval(tick, 1000);
     setRunning(true);
   }
 
-  function stopTimer() {
+  function stop() {
+    console.log("stop fired")
     setTime(seconds);
     setExpired(false);
     setRunning(() => false);
     clearInterval(intervalRef.current);
+    // setBoop(false);
+  }
+
+  function restart(){
+    stop();
+    start();
   }
 
   function handleClick() {
     if (running) {
-      stopTimer();
+      stop();
     } else {
-      startTimer();
+      start();
     }
   }
 
@@ -54,21 +63,31 @@ export default function CountdownTimer({ seconds, boop, setBoop }: Props) {
     }
   }, [time, expired]);
 
-  // start and stop the timer if the 'done' button in workoutTable is booped
   useEffect(() => {
-    console.log({ boop });
-    if (!running && boop) {
-      console.log("I ran");
-      startTimer();
+    console.log("inside timer use effect");
+    console.log({timer})
+    if (timer.startTimer) {
+      console.log("starting Timer");     
+      start();
+      setTimer((prevState) => ({
+        ...prevState,
+        startTimer: false,
+      }))
     }
-    if (running && !boop) {
-      stopTimer();
+    if (timer.stoptimer){
+      console.log("stopping Timer");
+      stop();
+    
+      setTimer((prevState) => ({
+        ...prevState,
+        stopTimer: false,
+      }))
     }
-    if (running && boop) {
-      stopTimer();
-      startTimer();
+    if (timer.restartTimer){
+      console.log("restarting Timer");
+      restart;
     }
-  }, [boop]);
+  },[timer])
 
   return (
     <div>
