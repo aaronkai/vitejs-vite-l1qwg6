@@ -18,7 +18,7 @@ export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer
 
   function start() {
     console.log("start fired")
-
+    stop();
     intervalRef.current = setInterval(tick, 1000);
     setRunning(true);
   }
@@ -29,7 +29,6 @@ export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer
     setExpired(false);
     setRunning(() => false);
     clearInterval(intervalRef.current);
-    // setBoop(false);
   }
 
   function restart(){
@@ -74,7 +73,7 @@ export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer
         startTimer: false,
       }))
     }
-    if (timer.stoptimer){
+    if (timer.stopTimer){
       console.log("stopping Timer");
       stop();
     

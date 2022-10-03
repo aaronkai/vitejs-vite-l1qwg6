@@ -43,7 +43,6 @@ export default function Button({
   }
 
   function stopTimer(){
-    console.log("stop Timer")
     setTimer((prevState) => ({
       ...prevState,
       stopTimer: true,
@@ -52,7 +51,6 @@ export default function Button({
   
 
   function startTimer(){
-    console.log("start timer");
     setTimer((prevState) => ({
       ...prevState,
       startTimer: true,
@@ -91,10 +89,6 @@ export default function Button({
       
     }
   }
-
-  // function toggleBoop() {
-  //   setBoop((prev) => !prev);
-  // }
 
   return (
     <div>
