@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import MainLifts from "./components/MainLifts";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import Workout from "./components/Workout";
 
 function App() {
   const [cookies, setCookie] = useCookies(["oneRM", "oneRMLogged", "TM"]);
@@ -33,12 +34,14 @@ function App() {
             <Header title="5/3/1" />
             <Nav setFormVisible={setFormVisible} setCookie={setCookie} />
           </header>
-          <MainLifts
-            setFormVisible={setFormVisible}
-            setCookie={setCookie}
-            cookies={cookies}
-            formVisible={formVisible}
-          />
+          <div>
+            <Workout
+              setFormVisible={setFormVisible}
+              setCookie={setCookie}
+              cookies={cookies}
+              formVisible={formVisible}
+            />
+          </div>
 
           <Footer />
         </div>

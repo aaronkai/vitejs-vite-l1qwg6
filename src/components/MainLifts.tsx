@@ -106,7 +106,7 @@ export default function MainLifts({
           </div>
         )}
         {!formVisible && (
-          <div className="grid grid-row-3 content-start p-4 max-w-2xl mx-auto">
+          <div className="grid grid-row-3 content-start max-w-2xl mx-auto">
             <WorkoutTable
               week={week}
               setWeek={setWeek}
