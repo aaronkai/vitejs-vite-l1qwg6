@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Accessories from "./Accessories";
 import MainLifts from "./MainLifts";
+import Warmup from "./Warmup";
 import WorkoutPartPicker from "./WorkoutPartPicker";
 
 interface Props {
@@ -13,7 +15,7 @@ interface Props {
   };
 }
 
-type WorkoutTypes = "warmup" | "main" | "accessories";
+type WorkoutTypes = "warmup" | "main" | "accessories" | undefined;
 
 export default function Workout({
   cookies,
@@ -21,10 +23,11 @@ export default function Workout({
   formVisible,
   setFormVisible,
 }: Props) {
-  const [workoutPart, setWorkoutPart] = useState<WorkoutTypes>();
+  const [workoutPart, setWorkoutPart] = useState<WorkoutTypes>("main");
   return (
     <>
       <WorkoutPartPicker setWorkoutPart={setWorkoutPart} />
+      {workoutPart === "warmup" && <Warmup />}
       {workoutPart === "main" && (
         <MainLifts
           setFormVisible={setFormVisible}
@@ -33,6 +36,7 @@ export default function Workout({
           formVisible={formVisible}
         />
       )}
+      {workoutPart === "accessories" && <Accessories />}
     </>
   );
 }

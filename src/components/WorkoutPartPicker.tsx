@@ -10,7 +10,7 @@ interface Props {
 
 export default function WorkoutPartPicker({ setWorkoutPart }: Props) {
   const [selectedWorkoutPart, setSelectedWorkoutPart] =
-    useState<WorkoutTypes>("warmup");
+    useState<WorkoutTypes>("main");
   function handleClick(value: WorkoutTypes) {
     setWorkoutPart(value);
     setSelectedWorkoutPart(value);
