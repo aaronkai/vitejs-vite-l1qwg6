@@ -2,8 +2,7 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet-async";
-import MainLifts from "./components/MainLifts";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 import Workout from "./components/Workout";
 

@@ -11,8 +11,13 @@ interface Props {
   setExerciseCompletion: any;
   sets: number;
   row: number;
-  boop: boolean;
-  setBoop: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimer: React.Dispatch<
+    React.SetStateAction<{
+      startTimer: boolean;
+      stopTimer: boolean;
+      restartTimer: boolean;
+    }>
+  >;
 }
 
 import { StarIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
@@ -25,7 +30,7 @@ export default function Button({
   boop,
   // setBoop,
   // timer,
-  setTimer
+  setTimer,
 }: Props) {
   let icon;
   if (sets < 6) {
@@ -42,23 +47,21 @@ export default function Button({
     }
   }
 
-  function stopTimer(){
+  function stopTimer() {
     setTimer((prevState) => ({
       ...prevState,
       stopTimer: true,
-    }))
+    }));
   }
-  
 
-  function startTimer(){
+  function startTimer() {
     setTimer((prevState) => ({
       ...prevState,
       startTimer: true,
-    }))
+    }));
   }
 
   function handleClick() {
-
     if (sets < 6) {
       let state = exerciseCompletion[exercise];
       state[sets] = !state[sets];
@@ -67,12 +70,11 @@ export default function Button({
         exercise: state,
       }));
       console.log(state[sets]);
-      if(state[sets]){
+      if (state[sets]) {
         startTimer();
-      } else{
+      } else {
         stopTimer();
       }
-     
     } else {
       let state = exerciseCompletion[exercise];
       state[sets][row] = !state[sets][row];
@@ -80,13 +82,12 @@ export default function Button({
         ...prevState,
         exercise: state,
       }));
-      console.log(state[sets][row])
-      if (state[sets][row]){
+      console.log(state[sets][row]);
+      if (state[sets][row]) {
         startTimer();
-      } else{
+      } else {
         stopTimer();
       }
-      
     }
   }
 
