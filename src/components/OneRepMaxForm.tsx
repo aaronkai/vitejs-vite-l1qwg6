@@ -52,7 +52,7 @@ export default function OneRepMaxForm({
   const exercises = Object.keys(oneRM);
 
   return (
-    <div className=" m-4 p-4  bg-yellow-200 self-start">
+    <div className=" p-4  bg-yellow-200 self-start">
       <h2 className="text-xl font-bold text-slate-900 uppercase">
         Enter Your One-Rep Maxes
       </h2>
