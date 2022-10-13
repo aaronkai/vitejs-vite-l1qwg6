@@ -5,8 +5,20 @@ interface Props {
   seconds: number;
   boop: boolean;
   setBoop: React.Dispatch<React.SetStateAction<boolean>>;
+  timer: {
+    startTimer: boolean;
+    stopTimer: boolean;
+    restartTimer: boolean;
+  };
+  setTimer: React.Dispatch<
+    React.SetStateAction<{
+      startTimer: boolean;
+      stopTimer: boolean;
+      restartTimer: boolean;
+    }>
+  >;
 }
-export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer }: Props) {
+export default function CountdownTimer({ seconds, timer, setTimer }: Props) {
   const [time, setTime] = useState(seconds);
   const [expired, setExpired] = useState(false);
   const [running, setRunning] = useState(false);
@@ -17,21 +29,21 @@ export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer
   }
 
   function start() {
-    console.log("start fired")
+    console.log("start fired");
     stop();
     intervalRef.current = setInterval(tick, 1000);
     setRunning(true);
   }
 
   function stop() {
-    console.log("stop fired")
+    console.log("stop fired");
     setTime(seconds);
     setExpired(false);
     setRunning(() => false);
     clearInterval(intervalRef.current);
   }
 
-  function restart(){
+  function restart() {
     stop();
     start();
   }
@@ -64,29 +76,29 @@ export default function CountdownTimer({ seconds, boop, setBoop, timer, setTimer
 
   useEffect(() => {
     console.log("inside timer use effect");
-    console.log({timer})
+    console.log({ timer });
     if (timer.startTimer) {
-      console.log("starting Timer");     
+      console.log("starting Timer");
       start();
       setTimer((prevState) => ({
         ...prevState,
         startTimer: false,
-      }))
+      }));
     }
-    if (timer.stopTimer){
+    if (timer.stopTimer) {
       console.log("stopping Timer");
       stop();
-    
+
       setTimer((prevState) => ({
         ...prevState,
         stopTimer: false,
-      }))
+      }));
     }
-    if (timer.restartTimer){
+    if (timer.restartTimer) {
       console.log("restarting Timer");
       restart;
     }
-  },[timer])
+  }, [timer]);
 
   return (
     <div>

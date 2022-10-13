@@ -27,9 +27,6 @@ export default function Button({
   setExerciseCompletion,
   sets,
   row,
-  boop,
-  // setBoop,
-  // timer,
   setTimer,
 }: Props) {
   let icon;

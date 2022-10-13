@@ -25,7 +25,7 @@ export default function Workout({
 }: Props) {
   const [workoutPart, setWorkoutPart] = useState<WorkoutTypes>("main");
   return (
-    <>
+    <div className="max-w-2xl mx-auto mt-4">
       <WorkoutPartPicker setWorkoutPart={setWorkoutPart} />
       {workoutPart === "warmup" && <Warmup />}
       {workoutPart === "main" && (
@@ -37,6 +37,6 @@ export default function Workout({
         />
       )}
       {workoutPart === "accessories" && <Accessories />}
-    </>
+    </div>
   );
 }

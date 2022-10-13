@@ -10,14 +10,14 @@ export default function Warmup() {
   const [warmupExercises, setWarmupExercises] = useState<warmupExercises>([
     { name: "box jump", reps: 10, sets: 2 },
     { name: "broad jump", reps: 10, sets: 2 },
-    { name: "dead bugs", reps: 10, sets: 2 },
+    { name: "medicine ball", reps: 10, sets: 2 },
   ]);
   const [newExercise, setNewExercise] = useState({
     name: "",
     sets: 0,
     reps: 0,
   });
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     console.log(name, value);
     setNewExercise((prevState) => ({
@@ -26,7 +26,7 @@ export default function Warmup() {
     }));
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setWarmupExercises((prevState) => [...prevState, newExercise]);
     setNewExercise({

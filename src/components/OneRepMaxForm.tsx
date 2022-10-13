@@ -57,37 +57,35 @@ export default function OneRepMaxForm({
         Enter Your One-Rep Maxes
       </h2>
 
-      <fieldset className=" ">
-        <form onSubmit={handleSubmit}>
-          {exercises.map((exercise) => {
-            return (
-              <div key={exercise}>
-                <label
-                  htmlFor={exercise}
-                  className="block mt-4 text-slate-900 text-lg"
-                >
-                  {capitalize(exercise)} 1RM:
-                  <input
-                    type="text"
-                    value={oneRM[exercise] || ""}
-                    id={exercise}
-                    name={exercise}
-                    tabIndex={1}
-                    onChange={(e) => handleChange(e)}
-                    required
-                    className="block w-full col-span-2 text-slate-900 border-2 border-slate-900"
-                  />
-                </label>
-              </div>
-            );
-          })}
-          <input
-            type="submit"
-            value="Calculate Training Max"
-            className="bg-pink-300 font-bold text-slate-900 text-xl p-4 mt-4 w-full"
-          />
-        </form>
-      </fieldset>
+      <form onSubmit={handleSubmit}>
+        {exercises.map((exercise) => {
+          return (
+            <div key={exercise}>
+              <label
+                htmlFor={exercise}
+                className="block mt-4 text-slate-900 text-lg"
+              >
+                {capitalize(exercise)} 1RM:
+                <input
+                  type="text"
+                  value={oneRM[exercise] || ""}
+                  id={exercise}
+                  name={exercise}
+                  tabIndex={1}
+                  onChange={(e) => handleChange(e)}
+                  required
+                  className="block w-full col-span-2 text-slate-900 border-2 border-slate-900"
+                />
+              </label>
+            </div>
+          );
+        })}
+        <input
+          type="submit"
+          value="Calculate Training Max"
+          className="bg-pink-300 font-bold text-slate-900 text-xl p-4 mt-4 w-full"
+        />
+      </form>
     </div>
   );
 }

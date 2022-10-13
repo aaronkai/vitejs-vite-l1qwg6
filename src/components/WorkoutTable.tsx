@@ -78,7 +78,11 @@ export default function WorkoutTable({
   });
   const exercises = Object.keys(TM);
   const [boop, setBoop] = useState(false);
-  const [timer, setTimer] = useState({startTimer: false, stopTimer: false, restartTimer: false})
+  const [timer, setTimer] = useState({
+    startTimer: false,
+    stopTimer: false,
+    restartTimer: false,
+  });
 
   return (
     <div className="grid gap-1">
@@ -89,8 +93,13 @@ export default function WorkoutTable({
         allExercises={exercises}
         setExercise={setExercise}
       />
-      <CountdownTimer seconds={90} boop={boop} setBoop={setBoop} timer={timer}
-                      setTimer={setTimer} />
+      <CountdownTimer
+        seconds={90}
+        boop={boop}
+        setBoop={setBoop}
+        timer={timer}
+        setTimer={setTimer}
+      />
       <table className="border-b-4 border-x-4 border-yellow-200 ">
         <thead>
           <tr>
@@ -121,9 +130,6 @@ export default function WorkoutTable({
                       sets={i}
                       row={j}
                       key={exercise + i + j}
-                      boop={boop}
-                      setBoop={setBoop}
-                      timer={timer}
                       setTimer={setTimer}
                     />
                   );
