@@ -1,12 +1,24 @@
 import { useState } from "react";
 
-export default function Accessories() {
-  const [warmupExercises, setWarmupExercises] = useState<warmupExercises>([
-    { name: "box jump", reps: 10, sets: 2 },
-    { name: "broad jump", reps: 10, sets: 2 },
-    { name: "medicine ball", reps: 10, sets: 2 },
-  ]);
+type Exercises = {
+  day1: {
+    exerciseName: string;
+    sets: number;
+    reps: number;
+  }[];
+  day2: {
+    exerciseName: string;
+    sets: number;
+    reps: number;
+  }[];
+  day3: {
+    exerciseName: string;
+    sets: number;
+    reps: number;
+  }[];
+};
 
+export default function Accessories() {
   const [mirrorBro, setMirrorBro] = useState({
     day1: [
       {
@@ -47,11 +59,11 @@ export default function Accessories() {
           <th>Exercise</th>
           <th>Reps</th>
         </thead>
-        {Object.keys(mirrorBro).map((key) => {
+        {Object.keys(mirrorBro).map((key: any) => {
           if (key === selectedDay) {
             return (
               <tbody>
-                {mirrorBro[key].map((exercise) => {
+                {mirrorBro[key as keyof Exercises].map((exercise) => {
                   return (
                     <tr>
                       <td>{exercise.sets}</td>
